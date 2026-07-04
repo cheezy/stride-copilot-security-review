@@ -330,7 +330,7 @@ Active only when `SARIF_MODE=true`. The transform converts the agent's native fi
       "tool": {
         "driver": {
           "name": "stride-security-review",
-          "version": "2.1.0",
+          "version": "<plugin.json version>",
           "informationUri": "https://github.com/cheezy/stride-security-review",
           "rules": [ /* one entry per distinct vulnerability_class present in findings */ ]
         }
@@ -340,6 +340,8 @@ Active only when `SARIF_MODE=true`. The transform converts the agent's native fi
   ]
 }
 ```
+
+`tool.driver.version` is the **emitting tool's own version** — read it from this plugin's `plugin.json` `version` field rather than pinning a literal, so it tracks releases instead of drifting. It is distinct from the SARIF **format** version (`"version": "2.1.0"` at the top level) and the `$schema` URL, which stay fixed at `2.1.0`.
 
 SARIF requires at least one `runs[]` entry, so emit the single-run object even when there are zero findings; in that case `results` is an empty array.
 
