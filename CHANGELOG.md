@@ -4,6 +4,17 @@ All notable changes to this project are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.0] - 2026-07-04
+
+### Fixed
+
+- Vulnerability-class count reconciled to the authoritative 15-value enum (10 non-agentic + 5 agentic) across `SKILL.md` and this changelog; `supply_chain` is no longer dropped from the enumerated non-agentic lists.
+- Corrected the stale "A fourth pack" wording in the `security-reviewer` agent prompt to "An eighth pack", consistent with the seven shipped framework rule packs.
+- Reconciled the fixture count from a stale 61 to the actual 64 in the changelog and `docs/SMOKE_TEST.md`, and added a fixture/`EXPECTED.md` set-equality drift guard to `scripts/run_eval.sh` — it fails fast (exit 2) naming any file↔row divergence and runs under `--dry-run` (now a structural-only check that exits 0 over the 64-fixture suite).
+- Resolved the self-contradictory `--rci` out-of-range handling with a single unambiguous clamp: a value `> 3` clamps to 3; `< 1`, non-integer, or bare `--rci` defaults to 1; an absent flag stays 0.
+- Completed the skill's operational-rules flag inventory to include `--sarif`, `--base`, and `--fail-on` alongside the previously-listed seven flags.
+- De-staled the SARIF `tool.driver.version` (was a pinned `2.1.0`; now tracks `plugin.json` and is documented as distinct from the SARIF format version `2.1.0`), repointed dangling `commands/security-review.md` references to `skills/security-review-essentials/SKILL.md`, removed the dead `commands/**` CI path filter, and updated `plugin.json`'s surface wording to name the `security-review-essentials` skill.
+
 ## [0.1.0] - 2026-05-21
 
 ### Added
@@ -27,4 +38,5 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 
 - The reference CI workflow (`.github/workflows/security-review.yml`) and the eval runner (`scripts/run_eval.sh`) currently install and invoke the Claude Code CLI; both files carry `TODO(copilot-port)` headers documenting the replacement targets for when Copilot CLI ships a settled non-interactive batch mode.
 - The SARIF schema validator example in `schema/README.md` also references `claude -p` and is annotated with a `TODO(copilot-port)` for the same reason.
 
+[0.2.0]: https://github.com/cheezy/stride-security-review-copilot/releases/tag/v0.2.0
 [0.1.0]: https://github.com/cheezy/stride-security-review-copilot/releases/tag/v0.1.0
