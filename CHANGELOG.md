@@ -12,7 +12,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 
 - All seven framework rule packs carried over: Android/Kotlin, Django/Python, Express/Node.js, iOS/Swift, Phoenix/Elixir, Rails/Ruby, React/Next.js.
 - Two scan modes carried over: diff (default) and `--full` (full-codebase scan with batched dispatch at 10 files per batch and a 256 KiB size cap).
 - All advanced flags carried over: `--maestro` (MAESTRO 7-layer agentic-AI classification), `--rci [N]` (Recursive Criticism & Improvement passes, clamped to 3), `--baseline` and `--update-baseline` (acknowledged-finding suppression with stable SHA-256 fingerprints), `--patches` (surgical-fix unified diffs on findings where a minimal fix exists), `--sarif` (SARIF v2.1.0 emission for GitHub Code Scanning), `--fail-on <severity>` (CI threshold gating), `--base <ref>` (PR-against-base diff scoping).
-- The `security-reviewer` agent prompt, vulnerability taxonomy (9 universal classes + 5 agentic classes), CWE/OWASP mapping, severity rubric, false-positive filter, and structured JSON output schema are byte-equivalent with the source plugin.
+- The `security-reviewer` agent prompt, vulnerability taxonomy (10 universal classes + 5 agentic classes), CWE/OWASP mapping, severity rubric, false-positive filter, and structured JSON output schema are byte-equivalent with the source plugin.
 - Web defense-in-depth pack and multi-platform CI/CD pipeline pack (8 platforms) carried over.
 - 61 fixture test cases and the TAP 13 eval runner carried over verbatim.
 

@@ -10,7 +10,7 @@ This skill is the user's entry point for the AI-powered security review pipeline
 
 ## Purpose
 
-Run an AI-powered security review of code changes in this repository. Detects vulnerabilities across injection, authentication/authorization, data exposure, cryptography, input validation, race conditions, XSS/code execution, and insecure configuration. Filters out low-impact noise (denial-of-service, rate-limiting, memory-exhaustion). Two scan modes, structured JSON output, optional SARIF emission, optional MAESTRO 7-layer agentic-AI classification, optional RCI critique loop, optional baseline suppression, optional surgical-fix patches.
+Run an AI-powered security review of code changes in this repository. Detects vulnerabilities across injection, authentication/authorization, data exposure, cryptography, input validation, race conditions, XSS/code execution, insecure configuration, and supply chain. Filters out low-impact noise (denial-of-service, rate-limiting, memory-exhaustion). Two scan modes, structured JSON output, optional SARIF emission, optional MAESTRO 7-layer agentic-AI classification, optional RCI critique loop, optional baseline suppression, optional surgical-fix patches.
 
 ## When to invoke
 
@@ -448,7 +448,7 @@ Do NOT print an additional "Gated: N findings at/above <severity>" line — the 
 
 ## What the agent does
 
-The `security-reviewer` agent (`agents/security-reviewer.agent.md` in this plugin) receives the diff or per-file content and returns a JSON document with one finding per vulnerability. Vulnerability classes covered: injection, authentication, authorization, data exposure, cryptography, input validation, race conditions, XSS/code execution, insecure configuration. For codebases that wire LLMs / agentic systems / Model Context Protocol clients into the request flow, five additional MAESTRO-derived classes activate: prompt injection, tool abuse, agent trust boundary, model output execution, vector store poisoning. The agentic classes activate only when the file imports an LLM/agentic-system/MCP SDK — see the "Agentic vulnerability classes" section in the agent prompt for the per-language detection signals.
+The `security-reviewer` agent (`agents/security-reviewer.agent.md` in this plugin) receives the diff or per-file content and returns a JSON document with one finding per vulnerability. Vulnerability classes covered: injection, authentication, authorization, data exposure, cryptography, input validation, race conditions, XSS/code execution, insecure configuration, supply chain. For codebases that wire LLMs / agentic systems / Model Context Protocol clients into the request flow, five additional MAESTRO-derived classes activate: prompt injection, tool abuse, agent trust boundary, model output execution, vector store poisoning. The agentic classes activate only when the file imports an LLM/agentic-system/MCP SDK — see the "Agentic vulnerability classes" section in the agent prompt for the per-language detection signals.
 
 The agent operates on **semantic analysis, not pattern matching**. A `grep` hit on `eval(` is not a finding; `eval(user_input)` at a trust boundary is. This is the agent's distinguishing property versus a static analyzer.
 
@@ -460,7 +460,7 @@ Each finding has:
 |---|---|
 | `severity` | `critical`, `high`, `medium`, `low`, or `info` — see the agent prompt for assignment rubric |
 | `file` / `line` | Source location of the issue |
-| `vulnerability_class` | One of the nine classes listed above |
+| `vulnerability_class` | One of the fifteen classes listed above |
 | `cwe` | Array of CWE-IDs (e.g. `["CWE-89"]`) — stable identifier for triage and dashboards |
 | `owasp` | Array of OWASP Top 10 2021 category strings (e.g. `["A03:2021"]`) |
 | `description` | What the vulnerability is, what trust boundary is crossed, what the worst realistic outcome is |
