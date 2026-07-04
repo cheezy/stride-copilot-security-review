@@ -439,7 +439,7 @@ Do NOT print an additional "Gated: N findings at/above <severity>" line — the 
 
 ## Operational rules
 
-- **Honor every flag from Step 1.** `--full`, `--json`, `--maestro`, `--rci`, `--baseline`, `--update-baseline`, and `--patches` are all first-class options. If Step 1 sets `FULL_MODE=true`, you MUST execute Step 2b and Step 4b — do NOT fall back to diff mode under any circumstance, and do NOT invent a "this looks small, I'll just diff it" shortcut. The user opted in by passing the flag; honor it.
+- **Honor every flag from Step 1.** `--full`, `--json`, `--sarif`, `--maestro`, `--rci`, `--baseline`, `--update-baseline`, `--patches`, `--base`, and `--fail-on` are all first-class options. If Step 1 sets `FULL_MODE=true`, you MUST execute Step 2b and Step 4b — do NOT fall back to diff mode under any circumstance, and do NOT invent a "this looks small, I'll just diff it" shortcut. The user opted in by passing the flag; honor it.
 - **Diff mode is the default, not the only mode.** When no `--full` flag is present, scope to the working-tree diff against `HEAD` (Step 2a). When `--full` IS present, scope to every tracked text file under the size cap (Step 2b). Both modes are supported; neither is a footgun.
 - **Diff-mode commands stay diff-mode.** The `git diff HEAD` invocations in Step 2a are diff-mode only — in full mode you use `git ls-files` (Step 2b) and never call `git diff`. Do not mix the two pipelines.
 - **Don't embed the agent prompt here.** The `security-reviewer` agent owns its own prompt — your job is to gather the input and format the output, not to re-specify the analysis methodology.
