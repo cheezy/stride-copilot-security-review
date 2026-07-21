@@ -38,5 +38,5 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 
 - The reference CI workflow (`.github/workflows/security-review.yml`) and the eval runner (`scripts/run_eval.sh`) currently install and invoke the Claude Code CLI; both files carry `TODO(copilot-port)` headers documenting the replacement targets for when Copilot CLI ships a settled non-interactive batch mode.
 - The SARIF schema validator example in `schema/README.md` also references `claude -p` and is annotated with a `TODO(copilot-port)` for the same reason.
 
-[0.2.0]: https://github.com/cheezy/stride-security-review-copilot/releases/tag/v0.2.0
-[0.1.0]: https://github.com/cheezy/stride-security-review-copilot/releases/tag/v0.1.0
+[0.2.0]: https://github.com/cheezy/stride-copilot-security-review/releases/tag/v0.2.0
+[0.1.0]: https://github.com/cheezy/stride-copilot-security-review/releases/tag/v0.1.0
